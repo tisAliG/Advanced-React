@@ -91,7 +91,7 @@ config.rules = {};
 config.rules[ 'possible-errors' ] = {
     'comma-dangle': [ 2, 'never' ],
     'no-cond-assign': 2,
-    'no-console': [ 2, { allow: [ 'warn', 'error', 'info' ] } ],
+    // 'no-console': [ 2, { allow: [ 'warn', 'error', 'info' ] } ],
     'no-constant-condition': 2,
     'no-control-regex': 2,
     'no-debugger': 2,
@@ -338,7 +338,7 @@ config.rules[ 'stylistic' ] = {
     'one-var-declaration-per-line': 0,
     'operator-assignment': 0,
     'operator-linebreak': 0,
-    'padded-blocks': 2,
+    // 'padded-blocks': 2,
     'padding-line-between-statements': [ 2, {
         'blankLine': 'always',
         'prev': [ 'const', 'let', 'var' ],
@@ -457,7 +457,7 @@ config.rules[ 'plugin:react' ] = {
     'react/sort-prop-types': 0,
     'react/wrap-multilines': 0,
     'react/jsx-boolean-value': 0,
-    'react/jsx-closing-bracket-location': [ 2, 'line-aligned' ],
+    // 'react/jsx-closing-bracket-location': [ 2, 'line-aligned' ], CHANGE LATER
     'react/jsx-curly-spacing': [ 2, {
         'attributes': {
             'allowMultiline': false

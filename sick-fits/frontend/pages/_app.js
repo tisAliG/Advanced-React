@@ -15,7 +15,7 @@ class MyApp extends App {
 
         }
 
-        // this exposes the query to the user
+        // this exposes the query to the user (basically the whole reason we are overriding getInitialProps)
         pageProps.query = ctx.query;
 
         return { pageProps };
