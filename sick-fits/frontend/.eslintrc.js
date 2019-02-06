@@ -476,7 +476,7 @@ config.rules[ 'plugin:react' ] = {
     'react/jsx-indent-props': [ 2, 4 ],
     'react/jsx-key': 2,
     'react/jsx-max-props-per-line': 0,
-    'react/jsx-no-bind': [ 2, { 'ignoreRefs': true } ],
+    // 'react/jsx-no-bind': [ 2, { 'ignoreRefs': true } ], //allows for arrow functions in JSX
     'react/jsx-no-duplicate-props': 2,
     'react/jsx-no-literals': 0,
     'react/jsx-no-target-blank': 2,
