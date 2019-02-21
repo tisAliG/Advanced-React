@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import gql from 'graphql-tag';
-import Item from './item';
+import Item from './Item';
 
 const ALL_ITEMS_QUERY = gql`
     query ALL_ITEMS_QUERY {

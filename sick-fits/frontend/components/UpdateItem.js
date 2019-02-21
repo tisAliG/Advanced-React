@@ -92,6 +92,9 @@ class UpdateItem extends Component {
     };
 
     render() {
+
+        // OMG.. so much indentation, need to think about a way to clean this up, it's painful to look at!
+
         return (
             <Query query={ SINGLE_ITEM_QUERY } variables={{ id: this.props.id }}>
                 {
