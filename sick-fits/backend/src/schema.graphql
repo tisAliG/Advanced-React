@@ -1,8 +1,10 @@
 # import * from './generated/prisma.graphql'
 
 # Item is being pulled from the above comment, from that file
+# TODO later: items arguments should be changed to like amount of items needed, and start rather than first
+
 type Query {
-	items: [Item]!
+	items( where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int ): [Item]!
 	item( where: ItemWhereUniqueInput! ): Item
 	itemsConnection( where: ItemWhereInput ): ItemConnection!
 }
