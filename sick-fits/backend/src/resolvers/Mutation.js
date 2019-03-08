@@ -71,7 +71,7 @@ const Mutations = {
         }, info );
 
         // create JWT token for the user (so they can stay logged in)
-        const token = jwt.sign( { user: user.id }, process.env.APP_SECRET );
+        const token = jwt.sign( { userId: user.id }, process.env.APP_SECRET );
 
         // set the token in a cookie on the response (so they can stay logged in)
         ctx.response.cookie( 'token', token, {

@@ -1,8 +1,22 @@
 import Link from 'next/link';
+import User from './User';
 import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
     <NavStyles>
+        <User>
+            {
+                /* inital arg is 'payload', but we are destructuring it to 'data', and then desctructuring 'data' to get 'me'*/
+                ( { data: { me } } ) => {
+
+                    console.log( me );
+                    if ( me ) return <p>{ me.name }</p>;
+
+                    return null;
+
+                }
+            }
+        </User>
         <Link href='/items'>
             <a>Shop</a>
         </Link>

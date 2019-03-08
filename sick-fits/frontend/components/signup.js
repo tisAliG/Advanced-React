@@ -20,15 +20,15 @@ const SIGNUP_MUTATION = gql`
 
 class Signup extends Component {
 
-    constructor( props ) {
-        super( props );
+    // constructor( props ) {
+    //     super( props );
 
-        this.state = {
-            email: '',
-            name: '',
-            password: ''
-        };
-    }
+    state = {
+        email: '',
+        name: '',
+        password: ''
+    };
+    // }
 
     saveToState = ( event ) => {
 
