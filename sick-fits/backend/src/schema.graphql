@@ -3,6 +3,10 @@
 # Item is being pulled from the above comment, from that file
 # TODO later: items arguments should be changed to like amount of items needed, and start rather than first
 
+type SuccessMessage {
+	message: String
+}
+
 type Query {
 	items( where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int ): [Item]!
 	item( where: ItemWhereUniqueInput! ): Item
@@ -16,4 +20,5 @@ type Mutation {
 	deleteItem( id: ID! ): Item
 	signup( email: String!, password: String!, name: String! ): User!
 	signin( email: String!, password: String! ): User!
+	signout: SuccessMessage
 }
