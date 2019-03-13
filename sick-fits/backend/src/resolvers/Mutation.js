@@ -125,7 +125,6 @@ const Mutations = {
             data: { resetToken, resetTokenExpiry }
         } );
 
-        console.log( res );
         return{ message: 'Thanks!' };
 
         // 3. Email them that reset token
@@ -174,7 +173,6 @@ const Mutations = {
         } );
 
         // 8. return the new user
-        console.log( updatedUser );
         return updatedUser;
     }
 };
