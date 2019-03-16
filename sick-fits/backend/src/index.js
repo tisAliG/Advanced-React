@@ -4,7 +4,6 @@ require( 'dotenv' ).config( { path: '.env' } );
 const createServer = require( './createServer' );
 const db = require( './db' );
 
-
 const server = createServer();
 
 // use express middleware to handle cookies (JWT)
@@ -28,7 +27,21 @@ server.express.use( ( req, res, next ) => {
 });
 
 // TODO: use express middleware to populate current user
+server.express.use( async ( req, res, next ) => {
 
+    // if they aren't logged in, skip
+    if ( !req.userId ) return next();
+
+    // query the user that matches the userId
+    const user = await db.query.user(
+        { where: { id: req.userId } },
+        '{ id, permissions, email, name }' /* gql code of what we want returned from the query */
+    );
+
+    req.user = user;
+
+    next();
+});
 
 server.start( {
     cors: {
