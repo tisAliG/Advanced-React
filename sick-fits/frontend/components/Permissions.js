@@ -3,9 +3,9 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
 import Table from './styles/Table';
-import SickButton from './styles/SickButton';
+import UserPermissions from './UserPermissions';
 
-// TODO: create a query to get all of these from the db (reduce duplication, or if anything changes in the future) (enum on BE)
+// TODO: create a query to get all of these from the db (reduce duplication, or if anything changes in the future) (enum on BE) OR put this in a localized place.
 const possiblePermissions = [
     'ADMIN',
     'USER',
@@ -76,8 +76,14 @@ class Permissions extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    { /* TODO: follow tut, or create a function to handle this */ }
-                                    { this.createUserRow( data.users ) }
+                                    { data.users.map( ( user ) => {
+
+                                        return ( <UserPermissions
+                                            key={ user.id }
+                                            user={ user }
+                                            possiblePermissions={ possiblePermissions }
+                                        /> );
+                                    } ) }
                                 </tbody>
                             </Table>
                         </div>
