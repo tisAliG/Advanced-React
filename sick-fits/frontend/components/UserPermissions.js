@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import SickButton from './styles/SickButton';
+
+const UPDATE_PERMISSIONS_MUTATION = gql`
+    mutation updatePermissions( $permissions: [ Permission ], $userId: ID! ) {
+        updatePermissions( permissions: $permissions, userId: $userId ) {
+            id
+            permissions
+            name
+            email
+        }
+    }
+`;
 
 class UserPermissions extends Component {
 
@@ -16,7 +29,7 @@ class UserPermissions extends Component {
         const checkbox = e.target;
 
         // take a copy of state, since it's bad practice to update state directly, instead you should take a copy and then overwrite the state with the new data
-        const updatedPermissions = [ ...this.state.permissions ];
+        let updatedPermissions = [ ...this.state.permissions ];
 
         if ( checkbox.checked ) {
 
@@ -25,7 +38,7 @@ class UserPermissions extends Component {
         }
         else {
 
-            updatedPermissions.filter( ( permission ) => permission !== checkbox.value );
+            updatedPermissions = updatedPermissions.filter( ( permission ) => permission !== checkbox.value );
         }
 
         this.setState( {
@@ -57,13 +70,32 @@ class UserPermissions extends Component {
         const user = this.props.user;
 
         return (
-            <tr>
-                <td>{ user.name }</td>
-                <td>{ user.email }</td>
+            <Mutation
+                mutation={ UPDATE_PERMISSIONS_MUTATION }
+                variables={{
+                    permissions: this.state.permissions,
+                    userId: user.id
+                }}
+            >
+                { ( updatePermissions, { loading, error } ) => (
 
-                { this.createPermissionInputs( this.props.possiblePermissions, user.id ) }
-                <td><SickButton>Update</SickButton></td>
-            </tr>
+                    <tr>
+                        <td>{ user.name }</td>
+                        <td>{ user.email }</td>
+
+                        { this.createPermissionInputs( this.props.possiblePermissions, user.id ) }
+                        <td>
+                            <SickButton
+                                type='button'
+                                disabled={ loading }
+                                onClick={ updatePermissions }
+                            >
+                                Updat{ loading ? 'ing' : 'e' }
+                            </SickButton>
+                        </td>
+                    </tr>
+                ) }
+            </Mutation>
         );
     }
 }

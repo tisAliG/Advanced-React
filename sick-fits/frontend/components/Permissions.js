@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
 import Table from './styles/Table';
@@ -14,6 +14,17 @@ const possiblePermissions = [
     'ITEMDELETE',
     'PERMISSIONUPDATE'
 ];
+
+const UPDATE_PERMISSIONS_MUTATION = gql`
+    mutation updatePermissions( $permissions: [ Permission ], $userId: ID! ) {
+        updatePermissions( permissions: $permissions, userId: $userId ) {
+            id
+            permissions
+            name
+            email
+        }
+    }
+`;
 
 const ALL_USERS_QUERY = gql`
     query {
