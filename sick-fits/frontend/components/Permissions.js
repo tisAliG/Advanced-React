@@ -33,33 +33,9 @@ class Permissions extends Component {
         return possiblePermissions.map( ( permission, index ) => <th key={ index }>{ permission }</th> );
     };
 
-    createUserRow = ( users ) => {
-
-        return users.map( ( user, uIndex ) => {
-            return (
-                <tr key={ uIndex }>
-                    <td>{ user.name }</td>
-                    <td>{ user.email }</td>
-
-                    { /* Can we simplify this, or make it easier to understand */possiblePermissions.map( ( permission, pIndex ) => {
-
-                        return (
-                            <td key={ pIndex }>
-                                <label htmlFor={ `${ user.id }-${ permission }-permission` }>
-                                    <input type='checkbox' />
-                                </label>
-                            </td>
-                        );
-                    } ) }
-                    <td><SickButton>Update</SickButton></td>
-                </tr>
-            );
-        } );
-    };
-
     render() {
 
-        return(
+        return (
             <Query query={ ALL_USERS_QUERY }>
                 {
                     ( { data, error } ) => (
@@ -88,7 +64,6 @@ class Permissions extends Component {
                             </Table>
                         </div>
                     )
-
                 }
             </Query>
         );
